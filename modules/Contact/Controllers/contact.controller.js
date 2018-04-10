@@ -4,7 +4,11 @@ let ContactModel = new Models('Contact');
 class ContactController {
    
     show(req, res) {
-        ContactModel.get(req.user.id).then((contacts)=>{
+        var user = JSON.parse(req.query.user);
+        console.log('show:', req.user.id);
+        console.log('body:', user);
+        
+        ContactModel.get(user.id).then((contacts)=>{
             res.send(contacts);
         });      
     }
