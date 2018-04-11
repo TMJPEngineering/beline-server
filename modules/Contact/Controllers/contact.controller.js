@@ -5,7 +5,7 @@ class ContactController {
    
     show(req, res) {
         var user = JSON.parse(req.query.user);
-        console.log('show:', req.user.id);
+        // console.log('show:', req.user.id);
         console.log('body:', user);
         
         ContactModel.get(user.id).then((contacts)=>{
