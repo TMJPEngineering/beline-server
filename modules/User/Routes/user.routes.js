@@ -6,4 +6,5 @@ export default () => {
     Route.post('/login', 'UserController@index');
     Route.get('/search-contacts', 'UserController@search');
     Route.post('/add-contact', 'UserController@add');
+    Route.view('/login', 'auth.login');
 };

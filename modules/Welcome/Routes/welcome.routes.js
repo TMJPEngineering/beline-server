@@ -3,5 +3,5 @@
 export default () => {
     namespace(config.modules.welcome);
 
-    Route.view('/', 'welcome.index', ['guest']);
+    Route.view('/', 'welcome.index');
 };

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beline</title>
+        <style>
+            .chatbot{
+                /* border:1px solid; */
+                width:500px;
+            }
+
+            .chatbot textarea{
+                width:100%;
+                height:50px;
+            }
+            .chat-timeline{
+                overflow:hidden;
+                overflow-y: visible;
+                height:200px;
+                border:1px solid;
+            }
+            .chat-timeline ul{
+                list-style: none;
+                padding: 0px;
+                margin: 12px;
+
+            }
+            .chat-timeline ul li{
+                background:whitesmoke;
+            }
+        </style>
+    </head>
+    <body ng-app="app" ng-controller="AppController as ac">
+
+        
+        <div ng-if="!ac.isLogin"> 
+            <form ng-submit="ac.login()">
+                <input type="text" placeholder="employee id" ng-model="ac.username"/>
+                <input type="password" placeholder="password" ng-model="ac.password"/>
+                <button>login</button>
+            </form>
+        </div>
+
+        <div ng-if="ac.isLogin"> 
+                <form ng-submit="ac.search()">
+                    <input type="text" placeholder="search user" ng-model="ac.searchKey"/>
+                    <button>chat</button>
+                </form>
+        </div>
+        <h3 ng-if="ac.connected">Connected to {{ac.client.name}}</h3>
+        <br>
+        <div class="chatbot" ng-if="ac.isLogin">
+
+            <div class="chat-timeline">
+                <ul ng-repeat="message in ac.messages">
+                    <li>{{message.text}}</li>
+                </ul>
+            </div>
+            <br>
+            <form ng-submit="ac.send()">
+                <textarea ng-model="ac.message">
+                </textarea><br>
+                <button>Send</button>
+            </form>
+
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.dev.js"></script>
+        <script src="/dist/app.js"></script>
+    </body>
+</html>
